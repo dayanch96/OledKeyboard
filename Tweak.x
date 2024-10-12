@@ -5,7 +5,17 @@ transparent view if dark mode for the keyboard enabled */
 
 @interface UIView (Private)
 @property (nonatomic, assign, readonly) BOOL _mapkit_isDarkModeEnabled;
+
+- (UIViewController *)_viewControllerForAncestor;
 @end
+
+static BOOL isDarkMode(UIView *view) {
+	if ([view respondsToSelector:@selector(_mapkit_isDarkModeEnabled)]) {
+		return view._mapkit_isDarkModeEnabled;
+	}
+
+	return view._viewControllerForAncestor.traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark;
+}
 
 @interface UIKeyboard : UIView // Regular keyboard
 + (instancetype)activeKeyboard;
@@ -15,7 +25,7 @@ transparent view if dark mode for the keyboard enabled */
 - (void)displayLayer:(id)arg1 {
     %orig;
 
-    self.backgroundColor = self._mapkit_isDarkModeEnabled ? [UIColor blackColor] : [UIColor clearColor];
+    self.backgroundColor = isDarkMode(self) ? [UIColor blackColor] : [UIColor clearColor];
 }
 %end
 
@@ -26,7 +36,7 @@ transparent view if dark mode for the keyboard enabled */
 - (id)_currentTextSuggestions {
     UIKeyboard *keyboard = [%c(UIKeyboard) activeKeyboard];
 
-    if (keyboard._mapkit_isDarkModeEnabled) {
+    if (isDarkMode(keyboard)) {
         [self.view setBackgroundColor:[UIColor blackColor]];
         keyboard.backgroundColor = [UIColor blackColor];
     } else {
@@ -45,7 +55,7 @@ transparent view if dark mode for the keyboard enabled */
 - (void)layoutSubviews {
     %orig;
 
-    self.backgroundColor = self._mapkit_isDarkModeEnabled ? [UIColor blackColor] : [UIColor clearColor];
+    self.backgroundColor = isDarkMode(self) ? [UIColor blackColor] : [UIColor clearColor];
 }
 %end
 
@@ -55,7 +65,7 @@ transparent view if dark mode for the keyboard enabled */
     %orig;
 
     if ([self isKindOfClass:NSClassFromString(@"TUIEmojiSearchInputView")]) { // Emoji searching panel
-        self.backgroundColor = self._mapkit_isDarkModeEnabled ? [UIColor blackColor] : [UIColor clearColor];
+        self.backgroundColor = isDarkMode(self) ? [UIColor blackColor] : [UIColor clearColor];
     }
 }
 %end
