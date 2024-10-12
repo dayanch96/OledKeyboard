@@ -1,0 +1,9 @@
+Package: com.dvntm.oledkeyboard
+Name: OledKeyboard
+Version: 0.0.1
+Architecture: iphoneos-arm
+Description: OLED Dark Mode for iOS System Keyboard
+Maintainer: dvntm
+Author: dvntm
+Section: Tweaks
+Depends: mobilesubstrate (>= 0.9.5000)
