@@ -10,11 +10,11 @@ transparent view if dark mode for the keyboard enabled */
 @end
 
 static BOOL isDarkMode(UIView *view) {
-	if ([view respondsToSelector:@selector(_mapkit_isDarkModeEnabled)]) {
-		return view._mapkit_isDarkModeEnabled;
-	}
+    if ([view respondsToSelector:@selector(_mapkit_isDarkModeEnabled)]) {
+        return view._mapkit_isDarkModeEnabled;
+    }
 
-	return view._viewControllerForAncestor.traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark;
+    return view._viewControllerForAncestor.traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark;
 }
 
 @interface UIKeyboard : UIView // Regular keyboard
@@ -65,7 +65,7 @@ static BOOL isDarkMode(UIView *view) {
     %orig;
 
     if ([self isKindOfClass:NSClassFromString(@"TUIEmojiSearchInputView")] // Emoji searching panel
-	 || [self isKindOfClass:NSClassFromString(@"_SFAutoFillInputView")]) { // Autofill password
+     || [self isKindOfClass:NSClassFromString(@"_SFAutoFillInputView")]) { // Autofill password
         self.backgroundColor = isDarkMode(self) ? [UIColor blackColor] : [UIColor clearColor];
     }
 }
@@ -77,11 +77,11 @@ static BOOL isDarkMode(UIView *view) {
 
 %hook UIKBVisualEffectView
 - (void)layoutSubviews {
-	%orig;
+    %orig;
 
-	if (isDarkMode(self)) {
-		self.backgroundEffects = nil;
-		self.backgroundColor = [UIColor blackColor];
-	}
+    if (isDarkMode(self)) {
+        self.backgroundEffects = nil;
+        self.backgroundColor = [UIColor blackColor];
+    }
 }
 %end
