@@ -64,8 +64,24 @@ static BOOL isDarkMode(UIView *view) {
 - (void)layoutSubviews {
     %orig;
 
-    if ([self isKindOfClass:NSClassFromString(@"TUIEmojiSearchInputView")]) { // Emoji searching panel
+    if ([self isKindOfClass:NSClassFromString(@"TUIEmojiSearchInputView")] // Emoji searching panel
+	 || [self isKindOfClass:NSClassFromString(@"_SFAutoFillInputView")]) { // Autofill password
         self.backgroundColor = isDarkMode(self) ? [UIColor blackColor] : [UIColor clearColor];
     }
+}
+%end
+
+@interface UIKBVisualEffectView : UIVisualEffectView
+@property (nonatomic, copy, readwrite) NSArray *backgroundEffects;
+@end
+
+%hook UIKBVisualEffectView
+- (void)layoutSubviews {
+	%orig;
+
+	if (isDarkMode(self)) {
+		self.backgroundEffects = nil;
+		self.backgroundColor = [UIColor blackColor];
+	}
 }
 %end
