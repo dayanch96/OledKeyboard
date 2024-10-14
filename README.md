@@ -5,6 +5,6 @@
 <li>Tested on iOS 14.8 (jb), iOS 16.4.1 (jb) and iOS 17.4.1 (jailed, by sideloading ipa). No options to configure</li>
 
 ## Screenshots
-| Regular keyboard | Searching Emojis |
-|---|---|
-| ![regular](https://github.com/user-attachments/assets/c04621ac-e10c-42c7-87b0-c11ca7f44761) | ![searching emoji](https://github.com/user-attachments/assets/84f9c36c-5557-4b51-aff6-808bb27009ea) |
+| ![Regular keyboard](https://github.com/user-attachments/assets/13991112-b77d-43d8-bde7-4acbf29eef56) | ![Predictive](https://github.com/user-attachments/assets/15d8fddf-599d-4ba4-9003-e973ac823268) | ![Searching emojis](https://github.com/user-attachments/assets/5e402445-7702-4a97-929a-a9cf700bac97) |
+|---|---|---|
+| ![Autofill](https://github.com/user-attachments/assets/67eec3ba-d58f-49da-80b3-bdceb7ee0bf3) | ![Bar above kb](https://github.com/user-attachments/assets/0b7a8bad-ec68-490c-8899-ce342591cc52) | ![Dictation](https://github.com/user-attachments/assets/8d1f66af-88e5-4381-88f4-d190f3673e04) |
